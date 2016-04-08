@@ -63,10 +63,10 @@ function checkAuthorisationStatus($controllerName){
 
     if($controllerName == 'Main'){
         
-        if ($check) {
+        if ($check){
             $controllerName = 'Main';
         } else {
-           $controllerName = 'Index';
+            $controllerName = 'Index';
         }
 
     }

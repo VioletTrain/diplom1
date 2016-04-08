@@ -79,7 +79,7 @@ function authoriseAction(){
 }
 
 function logoutAction(){
-    unset($_SESSION['email']);
+    $_SESSION['email'] = false;
     $j_data = true;
 
     echo json_encode($j_data);
