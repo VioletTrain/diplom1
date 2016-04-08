@@ -3,22 +3,6 @@
 include_once '../models/UsersModel.php';
 
 /**
- * Получение входных данных
- * 
- * @return type массив входных данных
- */
-function requestParams(){
-    $reqData = null;
-    
-    $reqData['email'] = isset($_REQUEST['email']) ? trim($_REQUEST['email']) : null;
-    $reqData['pwd1'] = isset($_REQUEST['pwd1']) ? trim($_REQUEST['pwd1']) : null;
-    $reqData['pwd2'] = isset($_REQUEST['pwd2']) ? trim($_REQUEST['pwd2']) : null;
-    $reqData['name'] = $reqData['email'];
-
-    return $reqData;
-}
-
-/**
  * AJAX регистрация пользователя
  * Инициализация сессионной переменной ($_SESSION['user'])
  * 
@@ -58,12 +42,11 @@ function authoriseAction(){
     $requestData = requestParams();
     
     $pwdMD5 = md5($requestData['pwd1']);
-    
+
     $resData = null;
-    $resData = checkPwd($requestData['pwd1'], $resData);
-    $resData = checkEmail($requestData['email'], $resData);
+    $resData = checkIncData($requestData['pwd1']);
+    $resData = checkIncData($requestData['email']);
     if(! $resData){
-        $resData = null;
         $resData = checkAuthoriseParams($requestData['email'], $pwdMD5);
         if($resData){
             $resData['success'] = true;
