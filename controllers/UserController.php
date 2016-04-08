@@ -44,8 +44,8 @@ function authoriseAction(){
     $pwdMD5 = md5($requestData['pwd1']);
 
     $resData = null;
-    $resData = checkIncData($requestData['pwd1']);
-    $resData = checkIncData($requestData['email']);
+    $resData = checkIncData($requestData['pwd1'], $resData);
+    $resData = checkIncData($requestData['email'], $resData);
     if(! $resData){
         $resData = checkAuthoriseParams($requestData['email'], $pwdMD5);
         if($resData){
